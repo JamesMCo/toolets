@@ -1,2 +1,4 @@
 # Ignore Jekyll site builds
 _site
+# Ignore Sass cache
+.sass-cache

@@ -1,0 +1,26 @@
+body {
+    @extend .bg-dark;
+    @extend .text-white;
+}
+
+.navbar {
+    @extend .bg-primary;
+    @extend .navbar-dark;
+}
+
+main {
+    @extend .container-lg;
+    @extend .py-3;
+}
+
+footer {
+    @extend .fixed-bottom;
+    @extend .bg-primary;
+    @extend .mt-auto;
+    @extend .py-3;
+}
+
+
+.list-group-item {
+    @extend .list-group-item-dark;
+}
