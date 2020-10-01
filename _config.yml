@@ -3,7 +3,7 @@ url: "https://mrjamesco.uk"
 
 defaults:
   -
-    score:
+    scope:
       path: ""
     values:
       layout: "default"
