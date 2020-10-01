@@ -1,11 +1,4 @@
 baseurl: "/toolets"
 url: "https://mrjamesco.uk"
 
-defaults:
-  -
-    scope:
-      path: ""
-    values:
-      layout: "default"
-      tool: false
 exclude: ["LICENSE"]
