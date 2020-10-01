@@ -7,3 +7,7 @@ body {
     @extend .bg-primary;
     @extend .navbar-dark;
 }
+
+.list-group-item {
+    @extend .list-group-item-dark;
+}

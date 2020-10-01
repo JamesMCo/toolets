@@ -7,4 +7,5 @@ defaults:
       path: ""
     values:
       layout: "default"
+      tool: false
 exclude: ["LICENSE"]
