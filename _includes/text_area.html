@@ -5,7 +5,7 @@
     </div>
     {% endif %}
     
-    <textarea class="form-control" id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {{{ include.onenter }}}"{% endif %}{% if include.click_to_copy %} readonly onclick="clipboard(this)" {% endif %}></textarea>
+    <textarea id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {{{ include.onenter }}}"{% endif %}{% if include.click_to_copy %} readonly onclick="clipboard(this)" {% endif %}></textarea>
 
     {% if include.label_right %}
     <div class="input-group-append">
