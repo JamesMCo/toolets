@@ -1,0 +1,24 @@
+---
+layout: default
+title: Selection Area
+description: Generate a bounding box selector using two of its corners
+tool: true
+---
+<div class="row row-cols-3">
+{% include text_input.html id="x1" label_left="x1" classes="col" onenter="safe_selarea()" autofocus=true %}
+{% include text_input.html id="y1" label_left="y1" classes="col" onenter="safe_selarea()" %}
+{% include text_input.html id="z1" label_left="z1" classes="col" onenter="safe_selarea()" %}
+</div>
+<div class="row row-cols-3">
+{% include text_input.html id="x2" label_left="x2" classes="col" onenter="safe_selarea()" %}
+{% include text_input.html id="y2" label_left="y2" classes="col" onenter="safe_selarea()" %}
+{% include text_input.html id="z2" label_left="z2" classes="col" onenter="safe_selarea()" %}
+</div>
+
+<div class="text-right">{% include button.html type="btn-secondary btn-lg" onclick="safe_selarea()" message="Generate" %}</div>
+
+<div id="errors"></div>
+
+{% include text_area.html id="out" label_left="Output<br>(click to copy)" click_to_copy=true %}
+
+<script type="text/javascript" src="selarea.js"></script>
