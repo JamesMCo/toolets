@@ -1,0 +1,1 @@
+<a {% if include.id %} id="{{ include.id }}"{% endif %} class="btn {{ include.type | default: 'btn-primary' }} mb-3{% if include.classes %} {{ include.classes }}{% endif %}"{% if include.onclick %} role="button" onclick="{{ include.onclick }}"{% endif %}>{{ include.message }}</a>

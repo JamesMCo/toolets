@@ -1,0 +1,1 @@
+<div class="alert {{ include.type | default: 'alert-primary' }}{% if include.classes %} {{ include.classes }}{% endif %}" role="alert">{{ include.message }}{% if include.dismiss %} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{% endif %}</div>
