@@ -14,10 +14,22 @@ main {
 
     @extend .container-fluid;
     @extend .py-3;
-
-    max-width: calc(100vw - 25vw);
-    @extend .px-5;
     height: calc(100vh - 56px);
+
+    @include media-breakpoint-down(sm) {
+        max-width: 100vw;
+        
+        // px-0
+        padding-left: 0px;
+        padding-right: 0px;
+    };
+    @include media-breakpoint-up(md) {
+        max-width: calc(100vw - 25vw);
+        
+        // px-5
+        padding-left: ($spacer * 3);
+        padding-right: ($spacer * 3);
+    };
 }
 
 footer {
