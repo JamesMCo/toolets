@@ -1,6 +1,6 @@
 body {
-    @extend .bg-dark;
     @extend .text-white;
+    height: 100vh;
 }
 
 .navbar {
@@ -9,8 +9,15 @@ body {
 }
 
 main {
-    @extend .container-lg;
+    @extend .bg-dark;
+    @extend .shadow-lg;
+
+    @extend .container-fluid;
     @extend .py-3;
+
+    max-width: calc(100vw - 25vw);
+    @extend .px-5;
+    height: calc(100vh - 56px);
 }
 
 footer {
