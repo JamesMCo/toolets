@@ -1,0 +1,19 @@
+<div class="input-group mb-3{% if include.classes %} {{ include.classes }}{% endif %}">
+    {% if include.label_left %}
+    <div class="input-group-prepend"{% if include.click_to_copy %} readonly onclick="clipboard(document.querySelector('#{{ include.id }}'))" {% endif %}>
+        <label class="input-group-text" for="{{ include.id }}">{{ include.label_left }}</label>
+    </div>
+    {% endif %}
+    
+    <select id="{{ include.id }}" class="custom-select"{% if include.autofocus %} autofocus{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {% raw %}{{% endraw %}{{ include.onenter }}{% raw %}}{% endraw %}"{% endif %}>
+    {% for o in include.options %}
+        <option>{{ o }}</option>
+    {% endfor %}
+    </select>
+
+    {% if include.label_right %}
+    <div class="input-group-append">
+        <label class="input-group-text" for="{{ include.id }}">{{ include.label_right }}</label>
+    </div>
+    {% endif %}
+</div>

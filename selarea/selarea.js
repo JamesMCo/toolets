@@ -6,6 +6,7 @@ const z1  = document.querySelector("#z1");
 const x2  = document.querySelector("#x2");
 const y2  = document.querySelector("#y2");
 const z2  = document.querySelector("#z2");
+const sel = document.querySelector("#selector");
 const out = document.querySelector("#out");
 const errors   = document.querySelector("#errors");
 
@@ -13,7 +14,7 @@ selarea = (x1, y1, z1, x2, y2, z2) => {
     let origin = [Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2)];
     let delta  = [Math.abs(x1 - x2), Math.abs(y1 - y2), Math.abs(z1 - z2)];
 
-    return "@a[x=" + origin[0] + ",y=" + origin[1] + ",z=" + origin[2] + ",dx=" + delta[0] + ",dy=" + delta[1] + ",dz=" + delta[2] + "]";
+    return sel.value + "[x=" + origin[0] + ",y=" + origin[1] + ",z=" + origin[2] + ",dx=" + delta[0] + ",dy=" + delta[1] + ",dz=" + delta[2] + "]";
 }
 
 safe_selarea = () => {

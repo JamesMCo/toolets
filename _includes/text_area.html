@@ -1,11 +1,11 @@
 <div class="input-group mb-3{% if include.classes %} {{ include.classes }}{% endif %}">
     {% if include.label_left %}
-    <div class="input-group-prepend">
+    <div class="input-group-prepend"{% if include.click_to_copy %} readonly onclick="clipboard(document.querySelector('#{{ include.id }}'))" {% endif %}>
         <span class="input-group-text" id="{{ include.id }}_label_left">{{ include.label_left }}</span>
     </div>
     {% endif %}
     
-    <textarea id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {{{ include.onenter }}}"{% endif %}{% if include.click_to_copy %} readonly onclick="clipboard(this)" {% endif %}></textarea>
+    <textarea id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {% raw %}{{% endraw %}{{ include.onenter }}{% raw %}}{% endraw %}"{% endif %}{% if include.click_to_copy %} readonly onclick="clipboard(this)" {% endif %}></textarea>
 
     {% if include.label_right %}
     <div class="input-group-append">
