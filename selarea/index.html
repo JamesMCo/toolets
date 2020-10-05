@@ -18,6 +18,8 @@ selectors: ["@a", "@e", "@p", "@r"]
 </div>
 
 {% include dropdown_list.html id="selector" label_left="Selector" onenter="safe_selarea()" options=page.selectors %}
+{% include text_input.html id="type" label_left="Type" onenter="safe_selarea()" %}
+{% include text_input.html id="other" label_left="Other" onenter="safe_selarea()" %}
 <div class="text-right">{% include button.html type="btn-secondary btn-lg" onclick="safe_selarea()" message="Generate" %}</div>
 
 <div id="errors"></div>
