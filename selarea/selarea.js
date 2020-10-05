@@ -1,24 +1,26 @@
 ---
 ---
-const x1  = document.querySelector("#x1");
-const y1  = document.querySelector("#y1");
-const z1  = document.querySelector("#z1");
-const x2  = document.querySelector("#x2");
-const y2  = document.querySelector("#y2");
-const z2  = document.querySelector("#z2");
-const sel = document.querySelector("#selector");
-const out = document.querySelector("#out");
-const errors   = document.querySelector("#errors");
+const x1     = document.querySelector("#x1");
+const y1     = document.querySelector("#y1");
+const z1     = document.querySelector("#z1");
+const x2     = document.querySelector("#x2");
+const y2     = document.querySelector("#y2");
+const z2     = document.querySelector("#z2");
+const sel    = document.querySelector("#selector");
+const type   = document.querySelector("#type");
+const other  = document.querySelector("#other");
+const out    = document.querySelector("#out");
+const errors = document.querySelector("#errors");
 
-selarea = (x1, y1, z1, x2, y2, z2) => {
+selarea = (x1, y1, z1, x2, y2, z2, s, t, o) => {
     let origin = [Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2)];
     let delta  = [Math.abs(x1 - x2), Math.abs(y1 - y2), Math.abs(z1 - z2)];
 
-    return sel.value + "[x=" + origin[0] + ",y=" + origin[1] + ",z=" + origin[2] + ",dx=" + delta[0] + ",dy=" + delta[1] + ",dz=" + delta[2] + "]";
+    return s + "[" + t + "x=" + origin[0] + ",y=" + origin[1] + ",z=" + origin[2] + ",dx=" + delta[0] + ",dy=" + delta[1] + ",dz=" + delta[2] + o + "]";
 }
 
 safe_selarea = () => {
-    let v_x1, v_y1, v_z1, v_x2, v_y2, v_z2;
+    let v_x1, v_y1, v_z1, v_x2, v_y2, v_z2, v_type, v_other;
 
     // Attempt to convert each input to a Number,
     // Throw an error if any input is empty or NaN
@@ -47,7 +49,13 @@ safe_selarea = () => {
         return;
     }
 
-    out.value = selarea(v_x1, v_y1, v_z1, v_x2, v_y2, v_z2);
+    // If type/other fields are not empty, format them to fit in the selector (otherwise, leave blank)
+    v_type = type.value;
+    if (v_type !== "") { v_type = "type=" + v_type + ","; }
+    v_other = other.value;
+    if (v_other !== "") { v_other = "," + v_other; }
+
+    out.value = selarea(v_x1, v_y1, v_z1, v_x2, v_y2, v_z2, sel.value, v_type, v_other);
 }
 
 error = (m) => {
