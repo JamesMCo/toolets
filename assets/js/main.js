@@ -5,11 +5,3 @@ clipboard = (obj) => {
     obj.setSelectionRange(0, 99999);
     document.execCommand("copy");
 }
-
-$(document).ready(() => {
-    try {
-        bsCustomFileInput.init();
-    } catch (err) {
-        // pass
-    }
-})
