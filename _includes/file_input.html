@@ -1,0 +1,18 @@
+<div class="input-group mb-3{% if include.classes %} {{ include.classes }}{% endif %}">
+    {% if include.label_left %}
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="{{ include.id }}_label_left">{{ include.label_left }}</span>
+    </div>
+    {% endif %}
+
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="{{ include.id }}"{% if include.accept %} accept="{{ include.accept }}"{% endif %}{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.onchange %} onChange="{{ include.onchange }}"{% endif %}>
+        <label class="custom-file-label" for="{{ include.id }}">{{ include.label_main }}</label>
+    </div>
+
+    {% if include.label_right %}
+    <div class="input-group-append">
+        <span class="input-group-text" id="{{ include.id }}_label_right">{{ include.label_right }}</span>
+    </div>
+    {% endif %}
+</div>
