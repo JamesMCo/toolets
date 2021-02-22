@@ -3,6 +3,8 @@ layout: default
 title: Selection Area
 description: Generate a bounding box selector using two of its corners
 tool: true
+
+selectors: ["@a", "@e", "@p", "@r", "@s"]
 ---
 <div class="row row-cols-3">
 {% include text_input.html id="x1" label_left="x1" classes="col" onenter="safe_selarea()" autofocus=true %}
@@ -15,6 +17,9 @@ tool: true
 {% include text_input.html id="z2" label_left="z2" classes="col" onenter="safe_selarea()" %}
 </div>
 
+{% include dropdown_list.html id="selector" label_left="Selector" onenter="safe_selarea()" options=page.selectors %}
+{% include text_input.html id="type" label_left="Type" onenter="safe_selarea()" %}
+{% include text_input.html id="other" label_left="Other" onenter="safe_selarea()" %}
 <div class="text-right">{% include button.html type="btn-secondary btn-lg" onclick="safe_selarea()" message="Generate" %}</div>
 
 <div id="errors"></div>
