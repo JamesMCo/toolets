@@ -52,8 +52,8 @@ create_marker_point = () => {
     let row = document.createElement("template");
     row.innerHTML =    `<tr>
                             <td>
-                                <a class="btn btn-secondary" onclick="this.parentElement.parentElement.remove();"><i class="bi bi-x"></i></a>
-                                <a class="btn btn-secondary" onclick="player.currentTime = this.parentElement.parentElement.children[1].innerHTML / 20; player.play();"><i class="bi bi-play-fill"></i></a>
+                                <a class="btn btn-secondary text-light" onclick="this.parentElement.parentElement.remove();"><i class="bi bi-x"></i></a>
+                                <a class="btn btn-secondary text-light" onclick="player.currentTime = this.parentElement.parentElement.children[1].innerHTML / 20; player.play();"><i class="bi bi-play-fill"></i></a>
                             </td>
                             <td>${ticks}</td>
                             <td>${desc.value}</td>

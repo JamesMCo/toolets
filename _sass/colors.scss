@@ -2,8 +2,12 @@
 @import "bootstrap/variables";
 
 $theme-colors: (
-    primary: $purple,
-    secondary: $cyan
+  "primary":    $purple,
+  "secondary":  $cyan,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
 );
-
-$body-bg: $gray-900;
