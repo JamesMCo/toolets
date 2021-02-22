@@ -1,0 +1,34 @@
+---
+layout: default
+title: Sound Timer
+description: Calculate how many ticks it takes to play a certain amount of a sound file
+tool: true
+---
+{% include file_input.html id="file" accept="audio/*" label_main="Select Sound File" onchange="handle_file_change(event)" %}
+
+<audio id="player" class="mb-3" style="width: 100%;" controls></audio>
+
+<div class="row">
+    <a class="btn btn-danger mb-3 mr-3 ml-3" id="player_back"      onclick="control_back();"><i class="bi bi-skip-backward-fill"></i></a>
+    <a class="btn btn-secondary mb-3 mr-3"   id="player_playpause" onclick="control_play_pause();"><i class="bi bi-play-fill"></i></a>
+    <a class="btn btn-danger mb-3 mr-3"      id="player_forward"   onclick="control_forward();"><i class="bi bi-skip-forward-fill"></i></a>
+    <span class="pt-2" id="player_timestamp">0 ticks</span>
+</div>
+
+<div class="row">
+{% include text_input.html id="desc" label_left="Marker Description" classes="col mb-3" onenter="create_marker_point()" %}
+{% include button.html type="btn-secondary" classes="col-1 mb-3 mr-3" onclick="create_marker_point()" message="Add Marker" %}
+</div>
+
+<table id="markers" class="table table-dark table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col" style="width: calc(100% / 12);"></th>
+            <th scope="col" style="width: calc(2 * 100% / 12)">Ticks</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script type="text/javascript" src="sndtimer.js"></script>
