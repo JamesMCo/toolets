@@ -14,7 +14,8 @@ main {
 
     @extend .container-fluid;
     @extend .py-3;
-    height: calc(100vh - 56px);
+    height: auto;
+    min-height: calc(100vh - 56px);
 
     @include media-breakpoint-down(sm) {
         max-width: 100vw;
