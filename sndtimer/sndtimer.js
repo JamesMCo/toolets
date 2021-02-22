@@ -60,7 +60,7 @@ create_marker_point = () => {
                         </tr>`;
 
     let inserted = false;
-    for (let i = 0; i < markers; i++) {
+    for (let i = 0; i < markers.childElementCount; i++) {
         if (parseInt(markers.children[i].children[1].innerHTML) > ticks) {
             markers.insertBefore(row.content.firstChild, markers.children[i]);
             inserted = true;
