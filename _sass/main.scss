@@ -38,6 +38,29 @@ main {
     width: 33.3333333333% !important;
 }
 
+.rawtextpreview {
+    transition: background-color 0.1s !important;
+
+    &.plain,&.announce,&.say {
+        background-color: $gray-900 !important;
+        &:hover {
+            background-color: #fff !important;
+        };
+    }
+    &.sign {
+        background-color: #fff !important;
+        .warning {
+            color: #000 !important;
+        }
+        &:hover {
+            background-color: $gray-900 !important;
+            .warning {
+                color: #fff !important;
+            }
+        }
+    }
+}
+
 footer {
     @extend .fixed-bottom;
     @extend .bg-primary;

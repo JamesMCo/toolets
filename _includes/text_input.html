@@ -2,10 +2,22 @@
     {% if include.label_left %}
     <span class="input-group-text" id="{{ include.id }}_label_left">{{ include.label_left }}</span>
     {% endif %}
+    {% if include.checkbox_left %}
+    <div class="input-group-text">
+        <span class="me-2">{{ include.checkbox_left }}</span>
+        <input class="form-check-input" id="{{ include.id }}_checkbox_left" type="checkbox" value="" aria-label="Checkbox for following text input box">
+    </div>
+    {% endif %}
     
-    <input type="text" id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {% raw %}{{% endraw %}{{ include.onenter }}{% raw %}}{% endraw %}"{% endif %}>
+    <input type="text" id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.list %} list="{{ include.list }}"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.oninput %} onInput="{{ include.oninput }}"{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {% raw %}{{% endraw %}{{ include.onenter }}{% raw %}}{% endraw %}"{% endif %}>
 
     {% if include.label_right %}
     <span class="input-group-text" id="{{ include.id }}_label_right">{{ include.label_right }}</span>
+    {% endif %}
+    {% if include.checkbox_right %}
+    <div class="input-group-text">
+        <span class="me-2">{{ include.checkbox_right }}</span>
+        <input class="form-check-input" id="{{ include.id }}_checkbox_right" type="checkbox" value="" aria-label="Checkbox for preceding text input box">
+    </div>
     {% endif %}
 </div>

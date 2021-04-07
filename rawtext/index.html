@@ -1,0 +1,30 @@
+---
+layout: default
+title: Raw Text
+description: Generate raw text components for tellraws, titles, and signs
+tool: true
+
+---
+{% include file_input.html id="file" accept=".lang" label_right="Select Language File" onchange="handle_file_change(event)" %}
+<datalist id="autocomplete_lang_list"></datalist>
+
+{% include button.html id="plain_button"    type="btn-secondary text-light" classes="col-2 mb-3 me-3" onclick="init_plain()"        message="Plain" %}
+{% include button.html id="announce_button" type="btn-danger text-light"    classes="col-2 mb-3 me-3" onclick="init_announcement()" message="Announcement" %}
+{% include button.html id="say_button"      type="btn-danger text-light"    classes="col-2 mb-3 me-3" onclick="init_say()"          message="Say" %}
+{% include button.html id="sign_button"     type="btn-danger text-light"    classes="col-2 mb-3 me-3" onclick="init_sign()"         message="Sign" %}
+
+{% include text_input.html id="box1" label_left="Box 1" checkbox_right="From lang?" list="autocomplete_lang_list" %}
+{% include text_input.html id="box2" label_left="Box 2" checkbox_right="From lang?" list="autocomplete_lang_list" classes="d-none" %}
+{% include text_input.html id="box3" label_left="Box 3" checkbox_right="From lang?" list="autocomplete_lang_list" classes="d-none" %}
+{% include text_input.html id="box4" label_left="Box 4" checkbox_right="From lang?" list="autocomplete_lang_list" classes="d-none" %}
+
+<div class="text-end">{% include button.html type="btn-secondary text-light btn-lg" onclick="generate()" message="Generate" %}</div>
+
+<div class="input-group mb-3">
+    <span class="input-group-text" id="preview_label_left">Preview<br>(hover to swap background)</span>
+    <div id="preview" class="form-control rawtextpreview announce" aria-describedby="preview_label_left"></div>
+</div>
+
+{% include text_area.html id="out" label_left="Output<br>(click to copy)" click_to_copy=true %}
+
+<script type="text/javascript" src="rawtext.js"></script>
