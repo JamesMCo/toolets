@@ -69,6 +69,7 @@ init_plain = () => {
 
     preview.innerHTML = "";
     out.innerHTML     = "";
+    clearInterval(obf_loop);
 }
 
 init_announcement = () => {
@@ -92,6 +93,7 @@ init_announcement = () => {
 
     preview.innerHTML = "";
     out.innerHTML     = "";
+    clearInterval(obf_loop);
 }
 
 init_say = () => {
@@ -115,6 +117,7 @@ init_say = () => {
 
     preview.innerHTML = "";
     out.innerHTML     = "";
+    clearInterval(obf_loop);
 }
 
 init_sign = () => {
@@ -138,9 +141,12 @@ init_sign = () => {
 
     preview.innerHTML = "";
     out.innerHTML     = "";
+    clearInterval(obf_loop);
 }
 
 generate = () => {
+    clearInterval(obf_loop);
+
     if (plain_button.classList.contains("btn-secondary")) {
         preview.innerHTML = generate_plain_preview();
         out.innerHTML     = generate_plain_rawtext();
@@ -156,6 +162,10 @@ generate = () => {
     else if (sign_button.classList.contains("btn-secondary")) {
         preview.innerHTML = generate_sign_preview();
         out.innerHTML     = generate_sign_rawtext();
+    }
+
+    if (document.querySelector(".obfuscated")) {
+        obf_loop = setInterval(obfuscate_text, 200);
     }
 }
 
