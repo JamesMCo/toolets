@@ -175,7 +175,7 @@ format = (text) => {
         else if (event === "obfuscated") {obfuscated = true;}
         else if (event === "bold")       {bold       = true;}
         else if (event === "italic")     {italic     = true;}
-        else if (event === "reset")      {colour = "FFFFFF"; obfuscated = false; bold = false; italic = false;}
+        else if (event === "reset")      {colour = def_col; obfuscated = false; bold = false; italic = false;}
 
         if (output === "<span>") {output = "";} else {output += "</span>";}
         output += "<span ";
@@ -189,6 +189,7 @@ format = (text) => {
     
     let output     = "<span>";
 
+    let def_col    = (text[1] == "f") ? "FFFFFF" : "000000";
     let colour     = false;
     let obfuscated = false;
     let bold       = false;
