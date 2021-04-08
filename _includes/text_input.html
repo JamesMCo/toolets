@@ -5,7 +5,13 @@
     {% if include.checkbox_left %}
     <div class="input-group-text">
         <span class="me-2">{{ include.checkbox_left }}</span>
-        <input class="form-check-input" id="{{ include.id }}_checkbox_left" type="checkbox" value="" aria-label="Checkbox for following text input box">
+        <input class="form-check-input" id="{{ include.id }}_checkbox_left" type="checkbox" value=""{% if include.checkbox_left_onclick %} onclick="{{ include.checkbox_left_onclick }}"{% endif %} aria-label="Checkbox for following text input box">
+    </div>
+    {% endif %}
+    {% if include.checkbox_left2 %}
+    <div class="input-group-text">
+        <span class="me-2">{{ include.checkbox_left2 }}</span>
+        <input class="form-check-input" id="{{ include.id }}_checkbox_left2" type="checkbox" value=""{% if include.checkbox_left2_onclick %} onclick="{{ include.checkbox_left2_onclick }}"{% endif %} aria-label="Second checkbox for following text input box">
     </div>
     {% endif %}
     
@@ -17,7 +23,13 @@
     {% if include.checkbox_right %}
     <div class="input-group-text">
         <span class="me-2">{{ include.checkbox_right }}</span>
-        <input class="form-check-input" id="{{ include.id }}_checkbox_right" type="checkbox" value="" aria-label="Checkbox for preceding text input box">
+        <input class="form-check-input" id="{{ include.id }}_checkbox_right" type="checkbox" value=""{% if include.checkbox_right_onclick %} onclick="{{ include.checkbox_right_onclick }}"{% endif %} aria-label="Checkbox for preceding text input box">
+    </div>
+    {% endif %}
+    {% if include.checkbox_right2 %}
+    <div class="input-group-text">
+        <span class="me-2">{{ include.checkbox_right2 }}</span>
+        <input class="form-check-input" id="{{ include.id }}_checkbox_right2" type="checkbox" value=""{% if include.checkbox_right2_onclick %} onclick="{{ include.checkbox_right2_onclick }}"{% endif %} aria-label="Second checkbox for preceding text input box">
     </div>
     {% endif %}
 </div>

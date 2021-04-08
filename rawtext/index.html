@@ -3,20 +3,46 @@ layout: default
 title: Raw Text
 description: Generate raw text components for tellraws, titles, and signs
 tool: true
-
 ---
 {% include file_input.html id="file" accept=".lang" label_right="Select Language File" onchange="handle_file_change(event)" %}
 <datalist id="autocomplete_lang_list"></datalist>
+<datalist id="score_selector_list">
+    <option value="*"></option>
+    <option value="@a"></option>
+    <option value="@e"></option>
+    <option value="@p"></option>
+    <option value="@r"></option>
+    <option value="@s"></option>
+</datalist>
+<datalist id="selector_selector_list">
+    <option value="@a"></option>
+    <option value="@e"></option>
+    <option value="@p"></option>
+    <option value="@r"></option>
+    <option value="@s"></option>
+</datalist>
 
 {% include button.html id="plain_button"    type="btn-secondary text-light" classes="col-2 mb-3 me-3" onclick="init_plain()"        message="Plain" %}
 {% include button.html id="announce_button" type="btn-danger text-light"    classes="col-2 mb-3 me-3" onclick="init_announcement()" message="Announcement" %}
 {% include button.html id="say_button"      type="btn-danger text-light"    classes="col-2 mb-3 me-3" onclick="init_say()"          message="Say" %}
 {% include button.html id="sign_button"     type="btn-danger text-light"    classes="col-2 mb-3 me-3" onclick="init_sign()"         message="Sign" %}
 
-{% include text_input.html id="box1" label_left="Box 1" checkbox_right="From lang?" list="autocomplete_lang_list" %}
-{% include text_input.html id="box2" label_left="Box 2" checkbox_right="From lang?" list="autocomplete_lang_list" classes="d-none" %}
-{% include text_input.html id="box3" label_left="Box 3" checkbox_right="From lang?" list="autocomplete_lang_list" classes="d-none" %}
-{% include text_input.html id="box4" label_left="Box 4" checkbox_right="From lang?" list="autocomplete_lang_list" classes="d-none" %}
+<!-- hide with group by default, show on checkbox press, create some datalists and swap between them based on what the dropdown says -->
+<!-- write the preview and generation code for each of the options 🙈 -->
+{% for i in (1..4) %}{% capture boxid %}box{{ i }}{% endcapture %}{% capture boxname %}Box {{ i }}{% endcapture %}{% capture boxvis %}{% if i != 1 %}d-none{% endif %}{% endcapture %}
+{% include text_input.html id=boxid label_left=boxname checkbox_right="From lang?" checkbox_right_onclick="lang_checkbox_click(event)" checkbox_right2="Inner with?" checkbox_right2_onclick="toggle_with(event)" list="autocomplete_lang_list" classes=boxvis %}
+<div id="box{{ i }}_with" class="input-group mb-3 d-none">
+    <span class="input-group-text">Box {{ i }} With</span>
+    <select id="box{{ i }}_with_select" class="form-select" oninput="with_dropdown_change(event)">
+        <option>Plain text</option>
+        <option>Language entry</option>
+        <option>Selector</option>
+        <option>Score</option>
+    </select>
+    <input type="text" id="box{{ i }}_with_input" class="form-control">
+    <input type="text" id="box{{ i }}_with_input2" class="form-control d-none">
+</div>
+{% endfor %}
 
 <div class="text-end">{% include button.html type="btn-secondary text-light btn-lg" onclick="generate()" message="Generate" %}</div>
 
