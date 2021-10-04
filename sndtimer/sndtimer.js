@@ -58,7 +58,7 @@ create_marker_point = () => {
                                 <a class="btn btn-secondary text-light" onclick="this.parentElement.parentElement.remove();"><i class="bi bi-x"></i></a>
                                 <a class="btn btn-secondary text-light" onclick="player.currentTime = this.parentElement.parentElement.children[1].innerHTML / 20; player.play();"><i class="bi bi-play-fill"></i></a>
                             </td>
-                            <td data-rawticks"${ticks}">${adjusted_ticks}</td>
+                            <td data-rawticks="${ticks}">${adjusted_ticks}</td>
                             <td>${desc.value}</td>
                         </tr>`;
 
@@ -77,6 +77,13 @@ create_marker_point = () => {
     desc.value = "";
 }
 
+adjust_marker_offsets = () => {
+    let offset = parseInt(start_offset.value);
+
+    for (let i = 0; i < markers.childElementCount; i++) {
+        markers.children[i].children[1].innerHTML = parseInt(markers.children[i].children[1].dataset.rawticks) + (offset === NaN ? 0 : offset);
+    }
+}
 
 // Player Controls
 update_timestamp = () => {

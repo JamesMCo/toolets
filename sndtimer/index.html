@@ -16,7 +16,7 @@ tool: true
         <span class="pt-2" style="width: initial;" id="player_timestamp">0 ticks</span>
     </div>
     <div class="col-auto">
-        {% include text_input.html id="start_offset" label_left="Start Offset" type="number" value="0" %}
+        {% include text_input.html id="start_offset" label_left="Start Offset" type="number" value="0" oninput="adjust_marker_offsets()" %}
     </div>
 </div>
 
