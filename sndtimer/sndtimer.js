@@ -9,6 +9,7 @@ const desc             = document.querySelector("#desc");
 const markers          = document.querySelector("#markers>tbody");
 const start_offset     = document.querySelector("#start_offset");
 let timestamp_interval = null;
+let offset = 0;
 
 handle_file_change = (event) => {
     // Called when a new file is selected in the input element
@@ -40,7 +41,7 @@ handle_file_change = (event) => {
             player_forward.classList.add("btn-secondary");
         }
 
-        player_timestamp.innerHTML = "0 ticks";
+        player_timestamp.innerHTML = offset + " ticks";
 
         // Clear out the list of marker points
         markers.innerHTML = "";
@@ -48,9 +49,8 @@ handle_file_change = (event) => {
 }
 
 create_marker_point = () => {
-    let offset = parseInt(start_offset.value);
     let ticks = Math.floor(player.currentTime * 20);
-    let adjusted_ticks = ticks + (offset === NaN ? 0 : offset);
+    let adjusted_ticks = ticks + offset;
     
     let row = document.createElement("template");
     row.innerHTML =    `<tr>
@@ -78,16 +78,17 @@ create_marker_point = () => {
 }
 
 adjust_marker_offsets = () => {
-    let offset = parseInt(start_offset.value);
+    let parsed_offset = parseInt(start_offset.value);
+    offset = (parsed_offset === NaN ? 0 : parsed_offset);
 
     for (let i = 0; i < markers.childElementCount; i++) {
-        markers.children[i].children[1].innerHTML = parseInt(markers.children[i].children[1].dataset.rawticks) + (offset === NaN ? 0 : offset);
+        markers.children[i].children[1].innerHTML = parseInt(markers.children[i].children[1].dataset.rawticks) + offset;
     }
 }
 
 // Player Controls
 update_timestamp = () => {
-    player_timestamp.innerHTML = Math.floor(player.currentTime * 20) + " ticks";
+    player_timestamp.innerHTML = Math.floor(player.currentTime * 20) + offset + " ticks";
 }
 
 player.ontimeupdate = () => {
