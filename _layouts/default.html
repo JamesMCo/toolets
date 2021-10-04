@@ -14,13 +14,13 @@
         <meta property="site_name" content="Toolets by James C.">
         <meta name="twitter:site" content="@MrJamesCo">
 
-        <link rel="stylesheet" href="{% link assets/css/main.scss %}">{% if content contains 'class="bi' %}
+        <link rel="stylesheet" href="{% capture csslink %}{% link assets/css/main.scss %}{% endcapture %}/toolets{{ csslink | remove_first: "/toolets" }}">{% if content contains 'class="bi' %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">{% endif %}
     </head>
     <body>
         <nav class="navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% link index.html %}">Toolets</a>
+                <a class="navbar-brand" href="{% capture indexlink %}{% link index.html %}{% endcapture %}/toolets{{ indexlink | remove_first: "/toolets" }}">Toolets</a>
             </div>
         </nav>
 
@@ -38,8 +38,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>{% if content contains '<input type="file"' %}
         <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>{% endif %}
-        <script type="text/javascript" src="{% link assets/js/main.js %}"></script>
-    </body>
-</html>nk assets/js/main.js %}"></script>
+        <script type="text/javascript" src="{% capture jslink %}{% link assets/js/main.js %}{% endcapture %}/toolets{{ jslink | remove_first: "/toolets" }}"></script>
     </body>
 </html>
