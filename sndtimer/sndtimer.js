@@ -49,7 +49,8 @@ handle_file_change = (event) => {
 
 create_marker_point = () => {
     let offset = parseInt(start_offset.value);
-    let ticks = Math.floor(player.currentTime * 20) + (offset === NaN ? 0 : offset);
+    let ticks = Math.floor(player.currentTime * 20);
+    let adjusted_ticks = ticks + (offset === NaN ? 0 : offset);
     
     let row = document.createElement("template");
     row.innerHTML =    `<tr>
@@ -57,7 +58,7 @@ create_marker_point = () => {
                                 <a class="btn btn-secondary text-light" onclick="this.parentElement.parentElement.remove();"><i class="bi bi-x"></i></a>
                                 <a class="btn btn-secondary text-light" onclick="player.currentTime = this.parentElement.parentElement.children[1].innerHTML / 20; player.play();"><i class="bi bi-play-fill"></i></a>
                             </td>
-                            <td>${ticks}</td>
+                            <td data-rawticks"${ticks}">${adjusted_ticks}</td>
                             <td>${desc.value}</td>
                         </tr>`;
 
