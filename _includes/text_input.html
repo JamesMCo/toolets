@@ -15,7 +15,7 @@
     </div>
     {% endif %}
     
-    <input type="text" id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.list %} list="{{ include.list }}"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.oninput %} onInput="{{ include.oninput }}"{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {% raw %}{{% endraw %}{{ include.onenter }}{% raw %}}{% endraw %}"{% endif %}>
+    <input type="{% if include.type %}{{ include.type }}{% else %}text{% endif %}" id="{{ include.id }}" class="form-control"{% if include.label_left %} aria-describedby="{{ include.id }}_label_left"{% endif %}{% if include.list %} list="{{ include.list }}"{% endif %}{% if include.value %} value="{{ include.value }}"{% endif %}{% if include.autofocus %} autofocus{% endif %}{% if include.oninput %} onInput="{{ include.oninput }}"{% endif %}{% if include.onenter %} onKeyDown="if (event.keyCode == 13) {% raw %}{{% endraw %}{{ include.onenter }}{% raw %}}{% endraw %}"{% endif %}>
 
     {% if include.label_right %}
     <span class="input-group-text" id="{{ include.id }}_label_right">{{ include.label_right }}</span>

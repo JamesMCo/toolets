@@ -7,7 +7,9 @@ const player_forward   = document.querySelector("#player_forward");
 const player_timestamp = document.querySelector("#player_timestamp");
 const desc             = document.querySelector("#desc");
 const markers          = document.querySelector("#markers>tbody");
+const start_offset     = document.querySelector("#start_offset");
 let timestamp_interval = null;
+let offset = 0;
 
 handle_file_change = (event) => {
     // Called when a new file is selected in the input element
@@ -39,7 +41,7 @@ handle_file_change = (event) => {
             player_forward.classList.add("btn-secondary");
         }
 
-        player_timestamp.innerHTML = "0 ticks";
+        player_timestamp.innerHTML = offset + " ticks";
 
         // Clear out the list of marker points
         markers.innerHTML = "";
@@ -48,6 +50,7 @@ handle_file_change = (event) => {
 
 create_marker_point = () => {
     let ticks = Math.floor(player.currentTime * 20);
+    let adjusted_ticks = ticks + offset;
     
     let row = document.createElement("template");
     row.innerHTML =    `<tr>
@@ -55,7 +58,7 @@ create_marker_point = () => {
                                 <a class="btn btn-secondary text-light" onclick="this.parentElement.parentElement.remove();"><i class="bi bi-x"></i></a>
                                 <a class="btn btn-secondary text-light" onclick="player.currentTime = this.parentElement.parentElement.children[1].innerHTML / 20; player.play();"><i class="bi bi-play-fill"></i></a>
                             </td>
-                            <td>${ticks}</td>
+                            <td data-rawticks="${ticks}">${adjusted_ticks}</td>
                             <td>${desc.value}</td>
                         </tr>`;
 
@@ -74,10 +77,18 @@ create_marker_point = () => {
     desc.value = "";
 }
 
+adjust_marker_offsets = () => {
+    let parsed_offset = parseInt(start_offset.value);
+    offset = (parsed_offset === NaN ? 0 : parsed_offset);
+
+    for (let i = 0; i < markers.childElementCount; i++) {
+        markers.children[i].children[1].innerHTML = parseInt(markers.children[i].children[1].dataset.rawticks) + offset;
+    }
+}
 
 // Player Controls
 update_timestamp = () => {
-    player_timestamp.innerHTML = Math.floor(player.currentTime * 20) + " ticks";
+    player_timestamp.innerHTML = Math.floor(player.currentTime * 20) + offset + " ticks";
 }
 
 player.ontimeupdate = () => {
