@@ -7,6 +7,7 @@ const player_forward   = document.querySelector("#player_forward");
 const player_timestamp = document.querySelector("#player_timestamp");
 const desc             = document.querySelector("#desc");
 const markers          = document.querySelector("#markers>tbody");
+const start_offset     = document.querySelector("#start_offset");
 let timestamp_interval = null;
 
 handle_file_change = (event) => {
@@ -47,7 +48,8 @@ handle_file_change = (event) => {
 }
 
 create_marker_point = () => {
-    let ticks = Math.floor(player.currentTime * 20);
+    let offset = parseInt(start_offset.value);
+    let ticks = Math.floor(player.currentTime * 20) + (offset === NaN ? 0 : offset);
     
     let row = document.createElement("template");
     row.innerHTML =    `<tr>
