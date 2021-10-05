@@ -6,15 +6,19 @@ tool: true
 
 selectors: ["@a", "@e", "@p", "@r", "@s"]
 ---
-<div class="row row-cols-3">
-{% include text_input.html id="x1" label_left="x1" classes="col" onenter="safe_selarea()" autofocus=true %}
-{% include text_input.html id="y1" label_left="y1" classes="col" onenter="safe_selarea()" %}
-{% include text_input.html id="z1" label_left="z1" classes="col" onenter="safe_selarea()" %}
+{% include button.html id="combined_button"  type="btn-secondary text-light" classes="col-1 mb-3 me-3" onclick="init_combined()"  message="Combined" %}
+{% include button.html id="separated_button" type="btn-danger text-light"    classes="col-1 mb-3 me-3" onclick="init_separated()" message="Separated" %}
+<div class="row">
+{% include text_input.html id="all1" label_left="x1 y1 z1" classes="col" onenter="separate_combined(); safe_selarea()" autofocus=true %}
+{% include text_input.html id="x1" label_left="x1" classes="col d-none" onenter="safe_selarea()" %}
+{% include text_input.html id="y1" label_left="y1" classes="col d-none" onenter="safe_selarea()" %}
+{% include text_input.html id="z1" label_left="z1" classes="col d-none" onenter="safe_selarea()" %}
 </div>
-<div class="row row-cols-3">
-{% include text_input.html id="x2" label_left="x2" classes="col" onenter="safe_selarea()" %}
-{% include text_input.html id="y2" label_left="y2" classes="col" onenter="safe_selarea()" %}
-{% include text_input.html id="z2" label_left="z2" classes="col" onenter="safe_selarea()" %}
+<div class="row">
+{% include text_input.html id="all2" label_left="x2 y2 z2" classes="col" onenter="separate_combined(); safe_selarea()" %}
+{% include text_input.html id="x2" label_left="x2" classes="col d-none" onenter="safe_selarea()" %}
+{% include text_input.html id="y2" label_left="y2" classes="col d-none" onenter="safe_selarea()" %}
+{% include text_input.html id="z2" label_left="z2" classes="col d-none" onenter="safe_selarea()" %}
 </div>
 
 {% include dropdown_list.html id="selector" label_left="Selector" onenter="safe_selarea()" options=page.selectors %}
