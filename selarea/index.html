@@ -24,7 +24,7 @@ selectors: ["@a", "@e", "@p", "@r", "@s"]
 {% include dropdown_list.html id="selector" label_left="Selector" onenter="safe_selarea()" options=page.selectors %}
 {% include text_input.html id="type" label_left="Type" onenter="safe_selarea()" %}
 {% include text_input.html id="other" label_left="Other" onenter="safe_selarea()" %}
-<div class="text-end">{% include button.html type="btn-secondary text-light btn-lg" onclick="safe_selarea()" message="Generate" %}</div>
+<div class="text-end">{% include button.html type="btn-secondary text-light btn-lg" onclick="if (document.querySelector('#x1').parentElement.classList.contains('d-none')) {separate_combined();}; safe_selarea()" message="Generate" %}</div>
 
 <div id="errors"></div>
 
