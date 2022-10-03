@@ -11,6 +11,17 @@ const start_offset     = document.querySelector("#start_offset");
 let timestamp_interval = null;
 let offset = 0;
 
+ticks_to_timestring = ticks => {
+    minutes = Math.floor(Math.abs(ticks) / (60 * 20)).toString().padStart(2, "0");
+    seconds = Math.floor((Math.abs(ticks) / 20) % 60).toString().padStart(2, "0");
+    millis  = ((Math.abs(ticks) % 20) * 5).toString().padStart(2, "0");
+
+    sign    = ticks < 0 ? "-" : "";
+    plural  = ticks == 1 ? "" : "s";
+
+    return `${sign}${minutes}:${seconds}.${millis} (${ticks} tick${plural})`;
+}
+
 handle_file_change = (event) => {
     // Called when a new file is selected in the input element
     let reader = new FileReader();
@@ -41,7 +52,7 @@ handle_file_change = (event) => {
             player_forward.classList.add("btn-secondary");
         }
 
-        player_timestamp.innerHTML = offset + " ticks";
+        player_timestamp.innerHTML = ticks_to_timestring(offset);
 
         // Clear out the list of marker points
         markers.innerHTML = "";
@@ -88,7 +99,7 @@ adjust_marker_offsets = () => {
 
 // Player Controls
 update_timestamp = () => {
-    player_timestamp.innerHTML = Math.floor(player.currentTime * 20) + offset + " ticks";
+    player_timestamp.innerHTML = ticks_to_timestring(Math.floor(player.currentTime * 20) + offset);
 }
 
 player.ontimeupdate = () => {
