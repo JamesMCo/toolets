@@ -1,0 +1,11 @@
+---
+layout: default
+title: Skin Shape
+description: Check that all pixels in a skin file that shouldn't be seen are transparent
+tool: true
+---
+{% include file_input.html id="file" accept=".png" label_right="Select Skin File" onchange="handle_file_change(event)" %}
+
+<canvas id="canvas"></canvas>
+
+<script type="text/javascript" src="skinshape.js"></script>
