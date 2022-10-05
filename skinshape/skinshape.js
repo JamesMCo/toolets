@@ -17,3 +17,11 @@ handle_file_change = async (event) => {
         output.src = event.target.result;
     }
 }
+
+mask = () => {
+    console.log("Not implemented");
+}
+
+save = () => {
+    console.log("Not implemented");
+}

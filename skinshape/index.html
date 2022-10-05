@@ -6,6 +6,14 @@ tool: true
 ---
 {% include file_input.html id="file" accept=".png" label_right="Select Skin File" onchange="handle_file_change(event)" %}
 
-<img id="output">
+{% include button.html id="mask_button" type="btn-secondary text-light" classes="col-2 mb-3 me-3" onclick="mask()" message="Fix Pixels" %}
+{% include button.html id="save_button" type="btn-secondary text-light" classes="col-2 mb-3 me-3" onclick="save()" message="Save" %}
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <img id="output" style="width: 100%; image-rendering: pixelated;">
+    </div>
+</div>
 
 <script type="text/javascript" src="skinshape.js"></script>
