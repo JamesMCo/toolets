@@ -20,9 +20,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">{% endif %}
     </head>
     <body>
-        <nav class="navbar">
+        <nav class="navbar navbar-expand">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% capture indexlink %}{% link index.html %}{% endcapture %}/toolets{{ indexlink | remove_first: "/toolets" }}">Toolets</a>
+            </div>
+            <div class="navbar-nav">
+                <div class="navbar-item"><a class="nav-link{% if page.title contains "Index" %} active{% endif %}" href="/toolets{{ indexlink | remove_first: "/toolets" }}">Index</a></div>
+                <div class="navbar-item"><a class="nav-link{% if page.title contains "About" %} active{% endif %}" href="{% capture aboutlink %}{% link about.html %}{% endcapture %}/toolets{{ aboutlink | remove_first: "/toolets" }}">About</a></div>
             </div>
         </nav>
 
