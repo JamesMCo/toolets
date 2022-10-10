@@ -32,6 +32,10 @@ main {
         padding-left: ($spacer * 3);
         padding-right: ($spacer * 3);
     };
+    a:not(.btn):not(.list-group-item) {
+        @extend .text-secondary;
+        text-decoration: none;
+    }
 }
 
 .row-cols-3 > .col.input-group {
