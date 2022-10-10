@@ -1,0 +1,19 @@
+name: Update Footer Copyright Years
+
+on:
+  schedule:
+    - cron: 0 0 1 1 *
+jobs:
+  update-footer:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📂 Check-Out Repository
+        uses: actions/checkout@v2
+      - name: 📝 Update Footer Copyright Years
+        run: |
+          sed -i "s/2020-$(date -d '1 day ago' +'%Y')/2020-$(date +'%Y')/" _layouts/default.html
+      - name: ⏫ Commit and Push to Repository
+        run: |
+          git commit -am "Update copyright years"
+          git push
