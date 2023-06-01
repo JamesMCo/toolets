@@ -13,7 +13,7 @@ tool: true
         <a class="btn btn-danger text-light mb-3 me-3 ms-3" style="width: initial" id="player_back"      onclick="control_back();"><i class="bi bi-skip-backward-fill"></i></a>
         <a class="btn btn-secondary text-light mb-3 me-3"   style="width: initial" id="player_playpause" onclick="control_play_pause();"><i class="bi bi-play-fill"></i></a>
         <a class="btn btn-danger text-light mb-3"           style="width: initial" id="player_forward"   onclick="control_forward();"><i class="bi bi-skip-forward-fill"></i></a>
-        <span class="pt-2" style="width: initial;" id="player_timestamp">0 ticks</span>
+        <span class="pt-2" style="width: initial;" id="player_timestamp">00:00.00 (0 ticks)</span>
     </div>
     <div class="col-auto">
         {% include text_input.html id="start_offset" label_left="Start Offset" type="number" value="0" oninput="adjust_marker_offsets()" %}

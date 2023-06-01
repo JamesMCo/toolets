@@ -11,6 +11,17 @@ const start_offset     = document.querySelector("#start_offset");
 let timestamp_interval = null;
 let offset = 0;
 
+ticks_to_timestring = ticks => {
+    minutes = Math.floor(Math.abs(ticks) / (60 * 20)).toString().padStart(2, "0");
+    seconds = Math.floor((Math.abs(ticks) / 20) % 60).toString().padStart(2, "0");
+    millis  = ((Math.abs(ticks) % 20) * 5).toString().padStart(2, "0");
+
+    sign    = ticks < 0 ? "-" : "";
+    plural  = ticks == 1 ? "" : "s";
+
+    return `${sign}${minutes}:${seconds}.${millis} (${ticks} tick${plural})`;
+}
+
 handle_file_change = (event) => {
     // Called when a new file is selected in the input element
     let reader = new FileReader();
@@ -41,7 +52,7 @@ handle_file_change = (event) => {
             player_forward.classList.add("btn-secondary");
         }
 
-        player_timestamp.innerHTML = offset + " ticks";
+        player_timestamp.innerHTML = ticks_to_timestring(offset);
 
         // Clear out the list of marker points
         markers.innerHTML = "";
@@ -50,21 +61,21 @@ handle_file_change = (event) => {
 
 create_marker_point = () => {
     let ticks = Math.floor(player.currentTime * 20);
-    let adjusted_ticks = ticks + offset;
+    let tick_string = ticks_to_timestring(ticks + offset);
     
     let row = document.createElement("template");
     row.innerHTML =    `<tr>
                             <td>
                                 <a class="btn btn-secondary text-light" onclick="this.parentElement.parentElement.remove();"><i class="bi bi-x"></i></a>
-                                <a class="btn btn-secondary text-light" onclick="player.currentTime = this.parentElement.parentElement.children[1].innerHTML / 20; player.play();"><i class="bi bi-play-fill"></i></a>
+                                <a class="btn btn-secondary text-light" onclick="player.currentTime = this.parentElement.parentElement.children[1].dataset.rawticks / 20; player.play();"><i class="bi bi-play-fill"></i></a>
                             </td>
-                            <td data-rawticks="${ticks}">${adjusted_ticks}</td>
+                            <td data-rawticks="${ticks}">${tick_string}</td>
                             <td>${desc.value}</td>
                         </tr>`;
 
     let inserted = false;
     for (let i = 0; i < markers.childElementCount; i++) {
-        if (parseInt(markers.children[i].children[1].innerHTML) > ticks) {
+        if (parseInt(markers.children[i].children[1].dataset.rawticks) > ticks) {
             markers.insertBefore(row.content.firstChild, markers.children[i]);
             inserted = true;
             break;
@@ -82,13 +93,13 @@ adjust_marker_offsets = () => {
     offset = (parsed_offset === NaN ? 0 : parsed_offset);
 
     for (let i = 0; i < markers.childElementCount; i++) {
-        markers.children[i].children[1].innerHTML = parseInt(markers.children[i].children[1].dataset.rawticks) + offset;
+        markers.children[i].children[1].innerHTML = ticks_to_timestring(parseInt(markers.children[i].children[1].dataset.rawticks) + offset);
     }
 }
 
 // Player Controls
 update_timestamp = () => {
-    player_timestamp.innerHTML = Math.floor(player.currentTime * 20) + offset + " ticks";
+    player_timestamp.innerHTML = ticks_to_timestring(Math.floor(player.currentTime * 20) + offset);
 }
 
 player.ontimeupdate = () => {
