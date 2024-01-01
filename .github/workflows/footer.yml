@@ -3,6 +3,7 @@ name: Update Footer Copyright Years
 on:
   schedule:
     - cron: 0 0 1 1 *
+  workflow_dispatch:
 jobs:
   update-footer:
     runs-on: ubuntu-latest
