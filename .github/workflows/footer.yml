@@ -15,5 +15,7 @@ jobs:
           sed -i "s/2020-$(date -d '1 day ago' +'%Y')/2020-$(date +'%Y')/" _layouts/default.html
       - name: ⏫ Commit and Push to Repository
         run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
           git commit -am "Update copyright years"
           git push
