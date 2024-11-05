@@ -53,7 +53,7 @@ handle_file_change = (event) => {
             player_forward.classList.add("btn-secondary");
         }
 
-        player_timestamp.innerHTML = ticks_to_timestring(offset, false);
+        player_timestamp.innerHTML = ticks_to_timestring(offset);
 
         // Clear out the list of marker points
         markers.innerHTML = "";
