@@ -15,11 +15,12 @@ ticks_to_timestring = ticks => {
     minutes = Math.floor(Math.abs(ticks) / (60 * 20)).toString().padStart(2, "0");
     seconds = Math.floor((Math.abs(ticks) / 20) % 60).toString().padStart(2, "0");
     millis  = ((Math.abs(ticks) % 20) * 5).toString().padStart(2, "0");
+    duration = player.duration === NaN ? 0 : Math.floor(player.duration * 20)
 
     sign    = ticks < 0 ? "-" : "";
     plural  = ticks == 1 ? "" : "s";
 
-    return `${sign}${minutes}:${seconds}.${millis} (${ticks} tick${plural})`;
+    return `${sign}${minutes}:${seconds}.${millis} (${ticks}/${duration} tick${plural})`;
 }
 
 handle_file_change = (event) => {
@@ -101,6 +102,10 @@ adjust_marker_offsets = () => {
 update_timestamp = () => {
     player_timestamp.innerHTML = ticks_to_timestring(Math.floor(player.currentTime * 20) + offset);
 }
+
+player.addEventListener("loadedmetadata", () => {
+    update_timestamp();
+})
 
 player.ontimeupdate = () => {
     if (player.paused) {
