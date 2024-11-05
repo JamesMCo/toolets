@@ -11,7 +11,7 @@ const start_offset     = document.querySelector("#start_offset");
 let timestamp_interval = null;
 let offset = 0;
 
-ticks_to_timestring = (ticks, marker) => {
+ticks_to_timestring = ticks => {
     minutes = Math.floor(Math.abs(ticks) / (60 * 20)).toString().padStart(2, "0");
     seconds = Math.floor((Math.abs(ticks) / 20) % 60).toString().padStart(2, "0");
     millis  = ((Math.abs(ticks) % 20) * 5).toString().padStart(2, "0");
